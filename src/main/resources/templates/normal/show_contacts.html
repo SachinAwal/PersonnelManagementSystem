@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>this is home page</title>
+</head>
+<body>
+	<section>
+		<div class="card">
+			<div class="card-body">
+			  	 <h1 class="text-center">Your Contacts</h1>
+			  	 
+			  	 <table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">First Name</th>
+				      <th scope="col">Last Name</th>
+				      <th scope="col">Email</th>
+				      <th scope="col">Department</th>
+				      <th scope="col">Job Title</th>
+				      <th scope="col">Prefecture</th>
+				      <th scope="col">Action</th>
+				    </tr>
+				  </thead>
+					  <tbody>
+					    <tr th:each="c : ${contacts}">
+					      <th scope="row" th:text="'PMSUSER' + ${c.cId}">1</th>
+					      <td th:text="${c.firstName}">Mark</td>
+					      <td th:text="${c.lastName}">Otto</td>
+					      <td th:text="${c.email}">@mdo</td>
+					      <td th:text="${c.department}">Mark</td>
+					      <td th:text="${c.jobTitle}">Otto</td>
+					      <td th:text="${c.prefecture}">@mdo</td>
+					      <td>
+					      	<a href="#" th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger btn-sm">Delete</a> <br>
+					      	
+					      	<form method="post" th:action="@{'/user/update-contact/'+${c.cId}}" class="mt-2">
+					      		<button type="submit" class="btn btn-primary btn-sm">Update</button>
+					      	</form>
+					      	
+					      </td>
+					    </tr>
+					  </tbody>
+				</table>
+			  	 
+			</div>
+			
+		</div>
+	</section>
+	
+</body>
+</html>
